@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Металлообработка полного цикла в Калининграде и области — от одной детали до серийного производства."
+    />
+    <title>Металлообработка полного цикла</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%231b69a5'/%3E%3Cpath d='M7 8h18v5H7zm3 7h12v9H10z' fill='white'/%3E%3Ccircle cx='16' cy='19.5' r='2.8' fill='%23ff5b31'/%3E%3C/svg%3E"
+    />
+    <style>
+      @font-face {
+        font-family: "Oswald";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("assets/oswald-400.ttf") format("truetype");
+      }
+
+      @font-face {
+        font-family: "Oswald";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url("assets/oswald-500.ttf") format("truetype");
+      }
+
+      @font-face {
+        font-family: "Oswald";
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url("assets/oswald-600.ttf") format("truetype");
+      }
+
+      @font-face {
+        font-family: "Oswald";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url("assets/oswald-700.ttf") format("truetype");
+      }
+
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("assets/roboto-400.ttf") format("truetype");
+      }
+
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url("assets/roboto-500.ttf") format("truetype");
+      }
+
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url("assets/roboto-700.ttf") format("truetype");
+      }
+
+      :root {
+        --orange: #ff5d32;
+        --blue: #1a76b4;
+        --ink: #3f3f3f;
+        --pale: #dff2fb;
+        --white: #fff;
+        --page: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Roboto", Arial, sans-serif;
+        background: #fff;
+      }
+
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .page-shell {
+        width: min(100%, 1400px);
+        margin: 0 auto;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 829px;
+        color: #fff;
+        background: #1e75b1;
+        isolation: isolate;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background-image: url("assets/hero.webp");
+        background-repeat: no-repeat;
+        background-position: calc(100% + 470px) center;
+        background-size: auto 100%;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(90deg, rgba(17, 83, 139, 0.46) 0%, rgba(21, 100, 165, 0.08) 58%, rgba(0, 0, 0, 0.1) 100%);
+        pointer-events: none;
+      }
+
+      .container {
+        width: min(calc(100% - 48px), var(--page));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: relative;
+        top: 30px;
+        z-index: 5;
+        height: 62px;
+        display: grid;
+        grid-template-columns: 80px 1fr auto 153px;
+        align-items: center;
+        gap: 28px;
+        padding: 0 8px 0 14px;
+        background: rgba(113, 139, 162, 0.73);
+      }
+
+      .logo {
+        width: 47px;
+        height: 33px;
+        background: #fff;
+        display: block;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: center;
+        gap: 36px;
+      }
+
+      .nav a,
+      .phone {
+        color: #fff;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .nav a {
+        font-size: 14px;
+        transition: opacity 0.2s ease;
+      }
+
+      .nav a:hover {
+        opacity: 0.72;
+      }
+
+      .phone {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .quote-button,
+      .primary-button,
+      .secondary-button,
+      .wide-button,
+      .modal-submit {
+        border: 0;
+        border-radius: 0;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-family: "Oswald", "Arial Narrow", sans-serif;
+        font-weight: 600;
+        transition: transform 0.18s ease, filter 0.18s ease;
+      }
+
+      .quote-button:hover,
+      .primary-button:hover,
+      .secondary-button:hover,
+      .wide-button:hover,
+      .modal-submit:hover {
+        filter: brightness(1.06);
+      }
+
+      .quote-button:active,
+      .primary-button:active,
+      .secondary-button:active,
+      .wide-button:active,
+      .modal-submit:active {
+        transform: translateY(1px);
+      }
+
+      .quote-button {
+        height: 52px;
+        color: #111;
+        background: #fff;
+        font-size: 18px;
+      }
+
+      .menu-button {
+        display: none;
+        width: 46px;
+        height: 42px;
+        border: 0;
+        background: transparent;
+        color: #fff;
+        font-size: 25px;
+        cursor: pointer;
+      }
+
+      .hero-copy {
+        width: 710px;
+        padding-top: 68px;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      h1,
+      h2,
+      h3,
+      .stat-value {
+        font-family: "Oswald", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 700px;
+        margin: 0;
+        font-size: 52px;
+        font-weight: 600;
+        line-height: 1.12;
+        letter-spacing: -1.1px;
+      }
+
+      .hero-lead {
+        width: 555px;
+        margin: 28px 0 31px;
+        font-size: 16px;
+        line-height: 1.22;
+      }
+
+      .hero-lead strong {
+        font-weight: 700;
+      }
+
+      .hero-actions {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .action-column {
+        width: 290px;
+        text-align: center;
+      }
+
+      .primary-button,
+      .secondary-button {
+        width: 100%;
+        height: 66px;
+        color: #fff;
+        font-size: 18px;
+      }
+
+      .primary-button {
+        background: var(--orange);
+      }
+
+      .secondary-button {
+        background: rgba(183, 207, 222, 0.44);
+      }
+
+      .action-note {
+        margin: 10px auto 0;
+        width: 230px;
+        font-size: 13px;
+        line-height: 1.18;
+      }
+
+      .hero-checks {
+        position: absolute;
+        right: max(98px, calc((100% - 1200px) / 2));
+        top: 488px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-align: right;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.55;
+      }
+
+      .hero-checks li::before {
+        content: "✓ ";
+      }
+
+      .stats {
+        position: absolute;
+        left: 50%;
+        bottom: 50px;
+        transform: translateX(-50%);
+        width: min(calc(100% - 48px), var(--page));
+        min-height: 192px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        padding: 43px 55px 35px;
+        color: #404040;
+        background: rgba(250, 250, 250, 0.94);
+      }
+
+      .stat-value {
+        margin-bottom: 12px;
+        font-size: 46px;
+        font-weight: 600;
+        line-height: 0.95;
+        letter-spacing: -0.6px;
+      }
+
+      .stat-label {
+        font-size: 16px;
+        line-height: 1.2;
+      }
+
+      .order-section {
+        min-height: 813px;
+        padding: 112px 0 37px;
+        background: #fff;
+      }
+
+      .section-heading {
+        margin: 0;
+        max-width: 730px;
+        font-size: 50px;
+        font-weight: 600;
+        line-height: 1.12;
+        letter-spacing: -0.7px;
+      }
+
+      .section-copy {
+        margin: 25px 0 37px;
+        max-width: 430px;
+        font-size: 17px;
+        line-height: 1.2;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      .card {
+        height: 363px;
+        display: flex;
+        flex-direction: column;
+        padding: 26px 20px 20px;
+        background: var(--pale);
+      }
+
+      .card--accent {
+        color: #fff;
+        background: var(--orange);
+      }
+
+      .card h3 {
+        margin: 0 0 13px;
+        color: inherit;
+        font-size: 29px;
+        font-weight: 600;
+        line-height: 1.08;
+        letter-spacing: -0.35px;
+      }
+
+      .card p {
+        min-height: 64px;
+        margin: 0 0 14px;
+        font-size: 16px;
+        line-height: 1.22;
+      }
+
+      .card-image {
+        width: 100%;
+        height: 194px;
+        margin-top: auto;
+        object-fit: cover;
+        background: #fff;
+      }
+
+      .card:nth-child(1) .card-image {
+        object-position: center 60%;
+      }
+
+      .card:nth-child(2) .card-image {
+        object-position: center 53%;
+      }
+
+      .card:nth-child(3) .card-image {
+        object-position: center 55%;
+      }
+
+      .card:nth-child(4) .card-image {
+        object-fit: contain;
+        padding: 7px 14px;
+      }
+
+      .wide-button {
+        width: 100%;
+        height: 67px;
+        margin-top: 20px;
+        color: #fff;
+        background: #414141;
+        font-size: 17px;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        display: none;
+        place-items: center;
+        padding: 20px;
+        background: rgba(5, 22, 36, 0.78);
+      }
+
+      .modal.is-open {
+        display: grid;
+      }
+
+      .modal-card {
+        position: relative;
+        width: min(100%, 500px);
+        padding: 36px;
+        background: #fff;
+        box-shadow: 0 24px 90px rgba(0, 0, 0, 0.34);
+      }
+
+      .modal-card h2 {
+        margin: 0 40px 8px 0;
+        font-size: 34px;
+      }
+
+      .modal-card p {
+        margin: 0 0 22px;
+        line-height: 1.4;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 38px;
+        height: 38px;
+        border: 0;
+        background: transparent;
+        font-size: 28px;
+        cursor: pointer;
+      }
+
+      .field {
+        display: grid;
+        gap: 7px;
+        margin-top: 14px;
+      }
+
+      .field span {
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .field input,
+      .field textarea {
+        width: 100%;
+        border: 1px solid #aab3ba;
+        border-radius: 0;
+        padding: 12px;
+        font-size: 16px;
+      }
+
+      .field textarea {
+        min-height: 92px;
+        resize: vertical;
+      }
+
+      .modal-submit {
+        width: 100%;
+        height: 55px;
+        margin-top: 20px;
+        color: #fff;
+        background: var(--orange);
+        font-size: 18px;
+      }
+
+      .success {
+        display: none;
+        margin-top: 18px;
+        padding: 14px;
+        color: #0d4b28;
+        background: #dff5e8;
+      }
+
+      .success.is-visible {
+        display: block;
+      }
+
+      @media (max-width: 980px) {
+        .hero {
+          min-height: 990px;
+        }
+
+        .hero::before {
+          background-position: 35% center;
+          background-size: auto 100%;
+        }
+
+        .hero::after {
+          background: linear-gradient(90deg, rgba(14, 74, 126, 0.9) 0%, rgba(14, 86, 143, 0.63) 62%, rgba(0, 0, 0, 0.13) 100%);
+        }
+
+        .topbar {
+          grid-template-columns: auto 1fr auto auto;
+          gap: 12px;
+        }
+
+        .menu-button {
+          display: block;
+        }
+
+        .nav {
+          position: absolute;
+          top: 62px;
+          left: 0;
+          right: 0;
+          display: none;
+          flex-direction: column;
+          gap: 0;
+          background: rgba(26, 68, 103, 0.97);
+        }
+
+        .nav.is-open {
+          display: flex;
+        }
+
+        .nav a {
+          padding: 15px 24px;
+          border-top: 1px solid rgba(255, 255, 255, 0.13);
+        }
+
+        .hero-copy {
+          width: min(100%, 650px);
+        }
+
+        .hero-checks {
+          position: static;
+          width: min(100%, 650px);
+          margin-top: 25px;
+          text-align: left;
+        }
+
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 28px 20px;
+          padding: 35px 40px;
+        }
+
+        .cards {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
+
+        .order-section {
+          padding-bottom: 50px;
+        }
+      }
+
+      @media (max-width: 660px) {
+        .container {
+          width: min(calc(100% - 32px), var(--page));
+        }
+
+        .hero {
+          min-height: 1120px;
+        }
+
+        .hero::before {
+          background-position: 39% top;
+          background-size: auto 770px;
+        }
+
+        .hero::after {
+          background: linear-gradient(180deg, rgba(12, 67, 113, 0.78) 0%, rgba(15, 95, 155, 0.92) 54%, #176da9 76%);
+        }
+
+        .topbar {
+          top: 16px;
+          height: 58px;
+          grid-template-columns: 44px 1fr auto;
+          padding: 0 8px 0 11px;
+        }
+
+        .logo {
+          width: 36px;
+          height: 28px;
+        }
+
+        .phone {
+          justify-self: end;
+          font-size: 15px;
+        }
+
+        .quote-button {
+          display: none;
+        }
+
+        .hero-copy {
+          padding-top: 58px;
+        }
+
+        .eyebrow {
+          max-width: 285px;
+          font-size: 12px;
+        }
+
+        h1 {
+          font-size: clamp(32px, 9vw, 36px);
+          line-height: 1.08;
+          letter-spacing: -0.5px;
+        }
+
+        .hero-lead {
+          width: 100%;
+          margin: 22px 0 24px;
+          font-size: 15px;
+          line-height: 1.35;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .action-column {
+          width: 100%;
+        }
+
+        .primary-button,
+        .secondary-button {
+          height: 58px;
+        }
+
+        .action-note {
+          width: 100%;
+          margin-bottom: 4px;
+        }
+
+        .hero-checks {
+          margin-top: 18px;
+          font-size: 14px;
+          line-height: 1.7;
+        }
+
+        .stats {
+          bottom: 24px;
+          width: calc(100% - 32px);
+          gap: 24px 14px;
+          padding: 28px 20px;
+        }
+
+        .stat-value {
+          margin-bottom: 8px;
+          font-size: 33px;
+        }
+
+        .stat-label {
+          font-size: 14px;
+        }
+
+        .order-section {
+          padding: 64px 0 32px;
+        }
+
+        .section-heading {
+          font-size: 38px;
+        }
+
+        .section-copy {
+          margin: 18px 0 28px;
+          font-size: 16px;
+        }
+
+        .cards {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .card {
+          height: auto;
+          min-height: 405px;
+        }
+
+        .card h3 {
+          font-size: 30px;
+        }
+
+        .card-image {
+          height: 235px;
+        }
+
+        .wide-button {
+          margin-top: 16px;
+        }
+
+        .modal-card {
+          padding: 30px 22px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero" id="top">
+        <header class="topbar container">
+          <a class="logo" href="#top" aria-label="На главную"></a>
+          <nav class="nav" id="site-nav" aria-label="Основная навигация">
+            <a href="#services">Что делаем</a>
+            <a href="#order">Как заказать</a>
+            <a href="#order">Наши работы</a>
+            <a href="#conditions">Условия</a>
+            <a href="#contacts">Контакты</a>
+          </nav>
+          <a class="phone" href="tel:+79216101210">+7 (921) 610 12 10</a>
+          <button class="quote-button" type="button" data-open-modal>Получить КП</button>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню">☰</button>
+        </header>
+
+        <div class="container">
+          <div class="hero-copy" id="services">
+            <p class="eyebrow">Металлообработка полного цикла в Калининграде и области</p>
+            <h1>Изготовим любые детали<br />и металлоконструкции<br />по вашим чертежам</h1>
+            <p class="hero-lead">
+              Изготовим от <strong>1 детали до серийной партии для<br />производств и бизнеса.</strong>
+              Берём на себя весь цикл: резка,<br />гибка, сварка, мехобработка, пескоструй, покраска и сборка.
+            </p>
+            <div class="hero-actions">
+              <div class="action-column">
+                <button class="primary-button" type="button" data-open-modal>Рассчитать стоимость</button>
+                <p class="action-note">Бесплатно оценим возможность<br />изготовления в течение 24 часов</p>
+              </div>
+              <div class="action-column">
+                <button class="secondary-button" type="button" data-file-button>Отправить чертеж</button>
+                <input type="file" id="drawing-upload" accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png" hidden />
+              </div>
+            </div>
+          </div>
+
+          <ul class="hero-checks">
+            <li>Можно от 1 штуки</li>
+            <li>По чертежу или образцу</li>
+            <li>Расчёт стоимости по вашему ТЗ</li>
+          </ul>
+        </div>
+
+        <div class="stats" id="conditions">
+          <div class="stat">
+            <div class="stat-value">7-15 дней</div>
+            <div class="stat-label">Срок производства<br />от 7 до 15 дней</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">С НДС</div>
+            <div class="stat-label">Работаем по безналичному<br />расчету с НДС</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">От 1 шт.</div>
+            <div class="stat-label">Изготавливаем изделия от 1 шт.<br />до серийного производства</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">1 год</div>
+            <div class="stat-label">Гарантия на все<br />изделия</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="order-section" id="order">
+        <div class="container">
+          <h2 class="section-heading">Есть готовый чертёж, образец,<br />фото, детали или только идея</h2>
+          <p class="section-copy">Подберём способ изготовления и доведём<br />до готового изделия</p>
+
+          <div class="cards">
+            <article class="card">
+              <h3>Есть чертёж</h3>
+              <p>Изготовим строго по вашему<br />техническому заданию и<br />размерам</p>
+              <img class="card-image" src="assets/drawing.webp" alt="Технический чертёж детали" />
+            </article>
+            <article class="card">
+              <h3>Есть образец</h3>
+              <p>Снимем размеры и изготовим<br />аналог или улучшенную<br />версию.</p>
+              <img class="card-image" src="assets/sample.webp" alt="Образец металлической детали" />
+            </article>
+            <article class="card">
+              <h3>Есть идея / фото</h3>
+              <p>Поможем проработать<br />конструкцию и подобрать<br />технологию изготовления.</p>
+              <img class="card-image" src="assets/idea.webp" alt="Металлический стол, изготовленный по фотографии" />
+            </article>
+            <article class="card card--accent">
+              <h3>Нужна партия</h3>
+              <p>От одного изделия до<br />регулярного серийного<br />производства.</p>
+              <img class="card-image" src="assets/batch.webp" alt="Серия металлических изделий" />
+            </article>
+          </div>
+
+          <button class="wide-button" type="button" data-open-modal>Рассчитать стоимость</button>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal" id="quote-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <form class="modal-card" id="quote-form">
+        <button class="modal-close" type="button" data-close-modal aria-label="Закрыть">×</button>
+        <h2 id="modal-title">Рассчитать стоимость</h2>
+        <p>Опишите задачу — подготовим предварительный расчёт в течение 24 часов.</p>
+        <label class="field">
+          <span>Ваше имя</span>
+          <input name="name" autocomplete="name" required />
+        </label>
+        <label class="field">
+          <span>Телефон</span>
+          <input name="phone" type="tel" autocomplete="tel" required />
+        </label>
+        <label class="field">
+          <span>Что нужно изготовить</span>
+          <textarea name="details"></textarea>
+        </label>
+        <button class="modal-submit" type="submit">Отправить заявку</button>
+        <div class="success" id="form-success" role="status">Спасибо! Заявка подготовлена к отправке.</div>
+      </form>
+    </div>
+
+    <div id="contacts" hidden></div>
+
+    <script>
+      const modal = document.querySelector('#quote-modal');
+      const form = document.querySelector('#quote-form');
+      const success = document.querySelector('#form-success');
+      const nav = document.querySelector('#site-nav');
+      const menuButton = document.querySelector('.menu-button');
+
+      function openModal() {
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        modal.querySelector('input').focus();
+      }
+
+      function closeModal() {
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+        success.classList.remove('is-visible');
+      }
+
+      document.querySelectorAll('[data-open-modal]').forEach((button) => button.addEventListener('click', openModal));
+      document.querySelector('[data-close-modal]').addEventListener('click', closeModal);
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+      });
+
+      document.querySelector('[data-file-button]').addEventListener('click', () => {
+        document.querySelector('#drawing-upload').click();
+      });
+
+      menuButton.addEventListener('click', () => {
+        const open = nav.classList.toggle('is-open');
+        menuButton.setAttribute('aria-expanded', String(open));
+      });
+
+      nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+        nav.classList.remove('is-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      }));
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        success.classList.add('is-visible');
+      });
+    </script>
+  </body>
+</html>
